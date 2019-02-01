@@ -1,0 +1,11 @@
+liblogging-stdlog.so.0:stdlog_close
+liblogging-stdlog.so.0:stdlog_deinit
+liblogging-stdlog.so.0:stdlog_get_dflt_chanspec
+liblogging-stdlog.so.0:stdlog_get_msgbuf_size
+liblogging-stdlog.so.0:stdlog_init
+liblogging-stdlog.so.0:stdlog_log
+liblogging-stdlog.so.0:stdlog_log_b
+liblogging-stdlog.so.0:stdlog_open
+liblogging-stdlog.so.0:stdlog_version
+liblogging-stdlog.so.0:stdlog_vlog
+liblogging-stdlog.so.0:stdlog_vlog_b
