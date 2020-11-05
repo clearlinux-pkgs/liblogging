@@ -4,7 +4,7 @@
 #
 Name     : liblogging
 Version  : 1.0.6
-Release  : 2
+Release  : 3
 URL      : https://github.com/rsyslog/liblogging/archive/v1.0.6.tar.gz
 Source0  : https://github.com/rsyslog/liblogging/archive/v1.0.6.tar.gz
 Summary  : an enhanced replacement for the syslog() API with admin-configurable destinations
@@ -24,7 +24,6 @@ BuildRequires : pkgconfig(libsystemd)
 Summary: bin components for the liblogging package.
 Group: Binaries
 Requires: liblogging-license = %{version}-%{release}
-Requires: liblogging-man = %{version}-%{release}
 
 %description bin
 bin components for the liblogging package.
@@ -36,6 +35,7 @@ Group: Development
 Requires: liblogging-lib = %{version}-%{release}
 Requires: liblogging-bin = %{version}-%{release}
 Provides: liblogging-devel = %{version}-%{release}
+Requires: liblogging = %{version}-%{release}
 
 %description dev
 dev components for the liblogging package.
@@ -68,28 +68,34 @@ man components for the liblogging package.
 
 %prep
 %setup -q -n liblogging-1.0.6
+cd %{_builddir}/liblogging-1.0.6
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1549058203
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1604611000
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %autogen --disable-static
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1549058203
+export SOURCE_DATE_EPOCH=1604611000
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/liblogging
-cp COPYING %{buildroot}/usr/share/package-licenses/liblogging/COPYING
+cp %{_builddir}/liblogging-1.0.6/COPYING %{buildroot}/usr/share/package-licenses/liblogging/2942615ee26f9c8c1380d34e6ac7c3210c551437
 %make_install
 
 %files
@@ -113,7 +119,7 @@ cp COPYING %{buildroot}/usr/share/package-licenses/liblogging/COPYING
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/liblogging/COPYING
+/usr/share/package-licenses/liblogging/2942615ee26f9c8c1380d34e6ac7c3210c551437
 
 %files man
 %defattr(0644,root,root,0755)
