@@ -4,7 +4,7 @@
 #
 Name     : liblogging
 Version  : 1.0.6
-Release  : 3
+Release  : 4
 URL      : https://github.com/rsyslog/liblogging/archive/v1.0.6.tar.gz
 Source0  : https://github.com/rsyslog/liblogging/archive/v1.0.6.tar.gz
 Summary  : an enhanced replacement for the syslog() API with admin-configurable destinations
@@ -14,8 +14,8 @@ Requires: liblogging-bin = %{version}-%{release}
 Requires: liblogging-lib = %{version}-%{release}
 Requires: liblogging-license = %{version}-%{release}
 Requires: liblogging-man = %{version}-%{release}
-BuildRequires : docutils
 BuildRequires : pkgconfig(libsystemd)
+BuildRequires : pypi-docutils
 
 %description
 
@@ -75,7 +75,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1604611000
+export SOURCE_DATE_EPOCH=1649966808
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -92,7 +92,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1604611000
+export SOURCE_DATE_EPOCH=1649966808
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/liblogging
 cp %{_builddir}/liblogging-1.0.6/COPYING %{buildroot}/usr/share/package-licenses/liblogging/2942615ee26f9c8c1380d34e6ac7c3210c551437
